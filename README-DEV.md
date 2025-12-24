@@ -1,4 +1,4 @@
-# PartnerAI - Notas de Desarrollo
+# ShadowAI - Notas de Desarrollo
 
 ## ⚠️ ERRORES CRÍTICOS A EVITAR
 
@@ -42,7 +42,7 @@ previewImagesContainer.innerHTML = '';
 ✅ **CORRECTO:**
 ```javascript
 if (!previewImagesContainer) {
-    console.warn('[PartnerAI] Element not found');
+    console.warn('[ShadowAI] Element not found');
     return;
 }
 previewImagesContainer.innerHTML = '';
@@ -92,11 +92,11 @@ previewImagesContainer.innerHTML = '';
 ### Ver logs en consola:
 1. Abrir Sidepanel
 2. Presionar F12
-3. Buscar logs que empiecen con `[PartnerAI]`
+3. Buscar logs que empiecen con `[ShadowAI]`
 
 ### Recargar extensión después de cambios:
 1. Ir a `chrome://extensions`
-2. Click en "Recargar" ⟳ en la tarjeta de PartnerAI
+2. Click en "Recargar" ⟳ en la tarjeta de ShadowAI
 3. Cerrar y abrir el Sidepanel
 
 ---
@@ -104,7 +104,7 @@ previewImagesContainer.innerHTML = '';
 ## 📦 Estructura de Archivos
 
 ```
-PartnerAI/
+ShadowAI/
 ├── manifest.json          # Configuración de la extensión
 ├── sidepanel.html         # UI principal
 ├── sidepanel.js           # Lógica principal
@@ -164,7 +164,7 @@ PartnerAI/
 
 **Ejemplo de uso:**
 1. Copia una imagen (Ctrl+C en cualquier lugar)
-2. Haz clic en el textarea de PartnerAI
+2. Haz clic en el textarea de ShadowAI
 3. Pega (Ctrl+V)
 4. La imagen aparecerá en el preview
 5. Escribe tu pregunta y envía
@@ -188,3 +188,4 @@ PartnerAI/
 
 **Última actualización**: 2025-12-24
 **Desarrollador**: Nicolás Carrasco
+

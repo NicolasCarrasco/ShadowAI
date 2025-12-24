@@ -16,4 +16,5 @@ document.addEventListener('mouseup', (e) => {
     }
 });
 
-console.log("PartnerAI: Content script active (Silent Mode).");
+console.log("ShadowAI: Content script active (Silent Mode).");
+

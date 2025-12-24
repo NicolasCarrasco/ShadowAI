@@ -391,7 +391,7 @@ function addMessageUI(text, sender, imageUrls = []) {
                         copyBtn.classList.remove('copied');
                     }, 2000);
                 }).catch(err => {
-                    console.error('[PartnerAI] Copy failed:', err);
+                    console.error('[ShadowAI] Copy failed:', err);
                 });
             };
             msgDiv.appendChild(copyBtn);
@@ -435,7 +435,7 @@ async function sendMessage() {
         });
     });
 
-    console.log('[PartnerAI] Sending message...', {
+    console.log('[ShadowAI] Sending message...', {
         text: text.substring(0, 50),
         screenshotCount: currentScreenshots.length,
         filesCount: attachedFiles.length,
@@ -455,19 +455,19 @@ async function sendMessage() {
 
     try {
         const contextWindow = currentChatMessages.slice(-CONTEXT_WINDOW_LIMIT);
-        console.log('[PartnerAI] Context window:', contextWindow.length, 'messages');
+        console.log('[ShadowAI] Context window:', contextWindow.length, 'messages');
 
         const response = await callGemini(contextWindow, apiKey, model);
-        console.log('[PartnerAI] Raw API Response:', JSON.stringify(response).substring(0, 200));
+        console.log('[ShadowAI] Raw API Response:', JSON.stringify(response).substring(0, 200));
 
         if (!response) {
-            console.error('[PartnerAI] Response is null/undefined');
+            console.error('[ShadowAI] Response is null/undefined');
             addMessageUI(`❌ **Error:** No se recibió respuesta del servidor. Verifica tu conexión.`, 'ai');
             return;
         }
 
         if (response.error) {
-            console.error('[PartnerAI] API Error:', response.error);
+            console.error('[ShadowAI] API Error:', response.error);
             const errorMsg = response.error.message || JSON.stringify(response.error);
             addMessageUI(`❌ **Error API:** ${errorMsg}`, 'ai');
             return;
@@ -475,13 +475,13 @@ async function sendMessage() {
 
         if (response.candidates && response.candidates.length > 0 && response.candidates[0].content) {
             const aiText = response.candidates[0].content.parts[0].text;
-            console.log('[PartnerAI] AI Response received, length:', aiText.length);
+            console.log('[ShadowAI] AI Response received, length:', aiText.length);
             updateTokens(response.usageMetadata?.totalTokenCount || 0);
             addMessageUI(aiText, 'ai');
             currentChatMessages.push({ role: 'model', parts: [{ text: aiText }] });
             saveToHistory();
         } else {
-            console.warn('[PartnerAI] No valid candidates:', response);
+            console.warn('[ShadowAI] No valid candidates:', response);
             if (response.promptFeedback) {
                 addMessageUI(`⚠️ **Bloqueado:** ${response.promptFeedback.blockReason || 'Contenido bloqueado por seguridad'}`, 'ai');
             } else {
@@ -489,11 +489,11 @@ async function sendMessage() {
             }
         }
     } catch (error) {
-        console.error('[PartnerAI] Exception:', error);
-        console.error('[PartnerAI] Stack:', error.stack);
+        console.error('[ShadowAI] Exception:', error);
+        console.error('[ShadowAI] Stack:', error.stack);
         addMessageUI(`❌ **Error de Conexión:** ${error.message}. Verifica tu API Key y conexión.`, 'ai');
     } finally {
-        console.log('[PartnerAI] Cleaning up...');
+        console.log('[ShadowAI] Cleaning up...');
         loadingEl.style.display = 'none';
         sendBtn.disabled = false;
         chatContainer.scrollTop = chatContainer.scrollHeight;
@@ -550,7 +550,7 @@ captureBtn.addEventListener('click', () => {
 
 function renderScreenshotPreviews() {
     if (!previewImagesContainer) {
-        console.warn('[PartnerAI] previewImagesContainer not found');
+        console.warn('[ShadowAI] previewImagesContainer not found');
         return;
     }
 
@@ -698,7 +698,7 @@ userInput.addEventListener('paste', async (e) => {
             const file = item.getAsFile();
             if (!file) continue;
 
-            console.log('[PartnerAI] Clipboard image detected:', file.size, 'bytes');
+            console.log('[ShadowAI] Clipboard image detected:', file.size, 'bytes');
 
             // Check size limit
             if (file.size > MAX_IMAGE_SIZE) {
@@ -716,9 +716,9 @@ userInput.addEventListener('paste', async (e) => {
                 });
 
                 renderScreenshotPreviews();
-                console.log('[PartnerAI] Clipboard image added');
+                console.log('[ShadowAI] Clipboard image added');
             } catch (error) {
-                console.error('[PartnerAI] Error processing clipboard image:', error);
+                console.error('[ShadowAI] Error processing clipboard image:', error);
                 alert('❌ Error al procesar la imagen del portapapeles.');
             }
 
@@ -769,7 +769,7 @@ async function processImage(file) {
                 ctx.drawImage(img, 0, 0, width, height);
 
                 const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.85);
-                console.log('[PartnerAI] Image compressed:', img.width, 'x', img.height, '→', width, 'x', height);
+                console.log('[ShadowAI] Image compressed:', img.width, 'x', img.height, '→', width, 'x', height);
                 resolve(compressedDataUrl);
             };
 
@@ -781,3 +781,4 @@ async function processImage(file) {
         reader.readAsDataURL(file);
     });
 }
+
