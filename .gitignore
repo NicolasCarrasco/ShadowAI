@@ -34,3 +34,4 @@ config.local.js
 # Chrome Extension
 *.pem
 *.crx
+*.zip
