@@ -301,7 +301,7 @@ MIT License - see [LICENSE](LICENSE) file | Licencia MIT - ver archivo [LICENSE]
 ## 👨‍💻 Author | Autor
 
 **Nicolás Carrasco**  
-📧 [hello@nicolascarrasco.dev](mailto:hello@nicolascarrasco.dev)  
+📧 [nico@apolloti.cl](mailto:nico@apolloti.cl)  
 💼 [LinkedIn](https://linkedin.com/in/nicolascarrascoe)  
 🐙 [GitHub](https://github.com/NicolasCarrasco)
 
