@@ -1,0 +1,36 @@
+# Node modules
+node_modules/
+
+# Build files
+dist/
+build/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Temporary files
+*.tmp
+*.temp
+debug.js
+test-send.js
+
+# API Keys (never commit!)
+.env
+.env.local
+config.local.js
+
+# Chrome Extension
+*.pem
+*.crx
